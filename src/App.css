@@ -1,22 +1,16 @@
 /* Add text outline for cards or text shadow */
 
 :root {
-  --background-main: #FEFFFE;
-  --background-secondary: #E9EBF8;
-  --text-dark: #333333;
-  --text-light: #FEFFFE;
+  --background-main: #FFCDB2;
+  --background-secondary: #ffd6bf;
+  --text-dark: #6D6875;
+  --text-light: #f4f3ee;
+  --text-gradient-1: #E5989B;
+  --text-gradient-2: #FFB4A2;
 }
 
 .App {
   height: 100vh;
-  /* background-color: #1a202c;
-  background-color: #868476;
-  background-color: #524427;
-  background-color: #e7b972;
-  background-color: #3b3b3b;
-  background-color: #89bedd;
-  background-color: #dd9689; */
-  /* background-color: #B4B8C5; */
   background-color: var(--background-main);
   color: var(--text-dark);
   overflow: scroll;
@@ -103,12 +97,10 @@
   font-size: 72px;
   font-weight: 800;
   color: inherit;
-  /* background: -webkit-linear-gradient(left, #ffb87d, #ff8ac4); */
-  /* background: -webkit-linear-gradient(left, #B4B8C5,#C9D6EA); */
-  /* background: -webkit-linear-gradient(left, #8D818C,#A5A299); */
-  background: -webkit-linear-gradient(left,#A26769,#F15152);
+  background: -webkit-linear-gradient(left,var(--text-gradient-1),var(--text-gradient-2));
   /* background: var(--background-secondary); */
-  background-size: 200% 200%;
+  background-size: 150% 200%;
+  background-position: right;
   animation: gradient-animation 4s ease infinite;
   /* margin-bottom: 10px; */
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
@@ -168,6 +160,7 @@
   flex-direction: column;
   width: 40vw;
   margin: auto;
+  margin-top: 10px;
 }
 
 .twitter-logo {
@@ -315,7 +308,7 @@
   height: 42px;
 }
 
-.crystal-tag  .top-right-block {
+.crystal-tag .top-right-block {
   height: 100%;
   width: 100%;
   opacity: 40%;
