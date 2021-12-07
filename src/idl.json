@@ -1,0 +1,151 @@
+{
+  "version": "0.0.0",
+  "name": "contribpage",
+  "instructions": [
+    {
+      "name": "initialize",
+      "accounts": [
+        {
+          "name": "baseAccount",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "addItem",
+      "accounts": [
+        {
+          "name": "baseAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": true
+        }
+      ],
+      "args": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "ammount",
+          "type": "u64"
+        },
+        {
+          "name": "message",
+          "type": "string"
+        },
+        {
+          "name": "size",
+          "type": "u64"
+        },
+        {
+          "name": "color",
+          "type": "string"
+        },
+        {
+          "name": "coordx",
+          "type": "u64"
+        },
+        {
+          "name": "coordy",
+          "type": "u64"
+        },
+        {
+          "name": "timestamp",
+          "type": "u64"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "BaseAccount",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "totalItems",
+            "type": "u64"
+          },
+          {
+            "name": "itemList",
+            "type": {
+              "vec": {
+                "defined": "ItemStruct"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "types": [
+    {
+      "name": "ItemStruct",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "owner",
+            "type": "publicKey"
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "ammount",
+            "type": "u64"
+          },
+          {
+            "name": "message",
+            "type": "string"
+          },
+          {
+            "name": "size",
+            "type": "u64"
+          },
+          {
+            "name": "color",
+            "type": "string"
+          },
+          {
+            "name": "coordx",
+            "type": "u64"
+          },
+          {
+            "name": "coordy",
+            "type": "u64"
+          },
+          {
+            "name": "timestamp",
+            "type": "u64"
+          },
+          {
+            "name": "id",
+            "type": "u64"
+          }
+        ]
+      }
+    }
+  ],
+  "metadata": {
+    "address": "Hs18JoJZYm9VGA38fJVwfAbKGCkv3ssGVwByTiD4Fb6"
+  }
+}

@@ -1,38 +1,419 @@
+/* Add text outline for cards or text shadow */
+
 .App {
+  height: 100vh;
+  /* background-color: #1a202c;
+  background-color: #868476;
+  background-color: #524427;
+  background-color: #e7b972;
+  background-color: #3b3b3b;
+  background-color: #89bedd;
+  background-color: #dd9689; */
+  /* background-color: #B4B8C5; */
+  background-color: #FEFFFE;
+  color: #B4B8C5;
+  overflow: scroll;
   text-align: center;
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: normal;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.container {
+  height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 0 30px 0 30px;
 }
 
-.App-link {
-  color: #61dafb;
+.authed-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.header {
+  margin: 0;
+  font-size: 50px;
+  font-weight: 600;
+}
+
+.donation-counter {
+  margin: 0;
+  font-size: 25px;
+  font-weight: 600;
+  position: relative;
+  top: -30px;
+}
+
+.sub-text {
+  font-size: 25px;
+  margin-bottom: 0px;
+}
+
+.gradient-text {
+  background: -webkit-linear-gradient(left, #60c657 30%, #35aee2 60%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.cta-button {
+  height: 45px;
+  border: 0;
+  width: auto;
+  padding-left: 40px;
+  padding-right: 40px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.connect-wallet-button {
+  background: -webkit-linear-gradient(left, #60c657, #35aee2);
+  background-size: 200% 200%;
+  animation: gradient-animation 4s ease infinite;
+}
+
+.submit-gif-button {
+  background: -webkit-linear-gradient(left, #4e44ce, #35aee2);
+  background-size: 200% 200%;
+  animation: gradient-animation 4s ease infinite;
+  margin-left: 10px;
+}
+
+.donate-button {
+  height: 120px;
+  border: 0;
+  width: auto;
+  padding-left: 5vw;
+  padding-right: 5vw;
+  margin-top: 40px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 72px;
+  font-weight: 800;
+  /* color: #251605; */
+  color: inherit;
+  /* background: -webkit-linear-gradient(left, #ffb87d, #ff8ac4); */
+  /* background: -webkit-linear-gradient(left, #B4B8C5,#C9D6EA); */
+  background: -webkit-linear-gradient(left, #8D818C,#A5A299);
+  background-size: 200% 200%;
+  animation: gradient-animation 4s ease infinite;
+  /* margin-bottom: 10px; */
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.donate-button-small {
+  margin-top: 15px;
+  width: 100%;
+  color: inherit;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.pay-solana-button {
+  background: -webkit-linear-gradient(left, #2ceb9a,#8d98db,#ab66fe);
+  background-size: 200% 200%;
+  background-position-x: center;
+  animation: gradient-animation 4s ease infinite;
+  margin-left: 10px;
+}
+
+.pay-etherium-button {
+  background: -webkit-linear-gradient(left, #716b94,#c6c5d4);
+  background-size: 200% 200%;
+  background-position-x: center;
+  animation: gradient-animation 4s ease infinite;
+  margin-left: 10px;
+}
+
+.pay-card-button {
+  background: -webkit-linear-gradient(left,#586464,#dddddd);
+  background-size: 200% 200%;
+  background-position-x: center;
+  animation: gradient-animation 4s ease infinite;
+  margin-left: 10px;
+}
+
+
+.button-img {
+  height: 32px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  padding-bottom: 45px;
+}
+
+.donate-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 40vw;
+  margin: auto;
+}
+
+.twitter-logo {
+  width: 35px;
+  height: 35px;
+}
+
+.footer-text {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.gif-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 1.5rem;
+  justify-items: center;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 200px;
+}
+
+.gif-grid .gif-item {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  justify-self: center;
+  align-self: center;
+}
+
+.gif-item img {
+  width: 100%;
+  height: 300px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.crystal-form {
+  margin-top: 30px;
+}
+
+.crystal-form input[type="text"] {
+  display: inline-block;
+  padding: 10px;
+  height: 60px;
+  font-size: 16px;
+  box-sizing: border-box;
+  background-color: rgba(0, 0, 0, 0.25);
+  border: none;
+  border-radius: 10px;
+  margin: 10px auto;
+}
+
+.crystal-form input[type="number"] {
+  display: inline-block;
+  padding: 10px;
+  height: 60px;
+  font-size: 16px;
+  box-sizing: border-box;
+  background-color: rgba(0, 0, 0, 0.25);
+  border: none;
+  border-radius: 10px;
+  margin: 10px auto;
+}
+
+.crystal-form input[type="color"] {
+  display: inline-block;
+  padding: 0px;
+  height: 60px;
+  font-size: 16px;
+  box-sizing: border-box;
+  background-color: rgba(0, 0, 0, 0.25);
+  border: none;
+  border-radius: 10px;
+  margin: 10px auto;
+  width: 20%;
+}
+
+.money-input {
+  background-color: transparent;
+  /* border: none; */
+  border-bottom: 1px solid #CCC; /* customizable */
+  /* color: #555; */
+  box-sizing: border-box;
+  padding: 1px 6px;
+  margin-top: 10px;
+  height: 40px;
+}
+
+.donation-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 80vw;
+  margin: auto;
+  margin-bottom: 60px;
+}
+
+.crystal-tag {
+  height: auto;
+  width: 100%;
+  background-color: #8D818C;
+  text-align: left;
+  border-radius: 23px;
+  margin-bottom: 23px;
+}
+
+.crystal-tag .top-tag {
+  height: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 19px;
+  margin-right: 25px;
+  display: flex;
+  flex-direction: row;
+  
+  /* background-color: green; */
+}
+
+.crystal-tag .bottom-tag {
+  height: auto;
+  margin-bottom: 15px;
+  margin-left: 19px;
+  margin-right: 25px;
+  display: flex;
+  flex-direction: row;
+}
+
+.crystal-tag .top-left {
+  margin: 0px;
+  width: auto;
+  min-width: 40vw;
+  height: 100%;
+  margin-right: auto;
+  word-wrap: break-word;
+}
+
+.crystal-tag .top-right {
+  margin: 0px;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 60%;
+  height: auto;
+  border-radius: 20px;
+}
+
+.crystal-tag .name {
+  font-size: 28px;
+  width: auto;
+  margin-bottom: 0px;
+  font-weight: 500;
+}
+
+.crystal-tag .ownerid {
+  font-size: 10px;
+  margin-bottom: 0px;
+}
+
+.crystal-tag .message {
+  font-size: 16px;
+  height: auto;
+}
+
+.crystal-tag .top-right-text {
+  font-size: 22px;
+  text-align: center;
+  vertical-align: middle;
+  height: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  /* text-shadow: -1px -1px 0 rgb(167, 167, 167), 1px -1px 0 rgb(167, 167, 167), -1px 1px 0 rgb(167, 167, 167), 1px 1px 0 rgb(167, 167, 167); */
+
+}
+
+.crystal-tag .bold {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.input,
+.textarea {
+  border: 1px solid #ccc;
+  padding: 1px 6px;
+}
+
+.input-wrap {
+  position: relative;
+}
+.input-wrap .input {
+  position: absolute;
+  width: 100%;
+  left: 0;
+}
+.width-machine {
+  /*   Sort of a magic number to add extra space for number spinner */
+  padding: 0 1rem;
+}
+
+.textarea {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  resize: both;
+  min-height: 40px;
+  line-height: 20px;
+}
+
+.textarea[contenteditable]:empty::before {
+  content: "Placeholder still possible";
+  color: gray;
+}
+
+.message-input {
+  /* flex-grow: 1; */
+  width: 80%;
+}
+
+.smaller-input {
+  width: auto;
+}
+
+.connected-container button {
+  height: 50px;
+}
+
+.centered-image-text {
+  font-size: 60px;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.bottom-image-text {
+  font-size: 10px;
+  font-weight: bolder;
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.vote-button {
+  margin-top: 20px;
+}
+
+.margin-sides-input {
+  margin-left: 20vw;
+  margin-right: 20vw;
+}
+
+canvas {
+  border-radius: 12px;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
