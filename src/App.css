@@ -1,5 +1,12 @@
 /* Add text outline for cards or text shadow */
 
+:root {
+  --background-main: #FEFFFE;
+  --background-secondary: #E9EBF8;
+  --text-dark: #333333;
+  --text-light: #FEFFFE;
+}
+
 .App {
   height: 100vh;
   /* background-color: #1a202c;
@@ -10,8 +17,8 @@
   background-color: #89bedd;
   background-color: #dd9689; */
   /* background-color: #B4B8C5; */
-  background-color: #FEFFFE;
-  color: #B4B8C5;
+  background-color: var(--background-main);
+  color: var(--text-dark);
   overflow: scroll;
   text-align: center;
   font-family: 'Poppins', sans-serif !important;
@@ -44,7 +51,7 @@
   font-size: 25px;
   font-weight: 600;
   position: relative;
-  top: -30px;
+  top: -25px;
 }
 
 .sub-text {
@@ -85,7 +92,7 @@
 }
 
 .donate-button {
-  height: 120px;
+  height: 135px;
   border: 0;
   width: auto;
   padding-left: 5vw;
@@ -95,11 +102,12 @@
   cursor: pointer;
   font-size: 72px;
   font-weight: 800;
-  /* color: #251605; */
   color: inherit;
   /* background: -webkit-linear-gradient(left, #ffb87d, #ff8ac4); */
   /* background: -webkit-linear-gradient(left, #B4B8C5,#C9D6EA); */
-  background: -webkit-linear-gradient(left, #8D818C,#A5A299);
+  /* background: -webkit-linear-gradient(left, #8D818C,#A5A299); */
+  background: -webkit-linear-gradient(left,#A26769,#F15152);
+  /* background: var(--background-secondary); */
   background-size: 200% 200%;
   animation: gradient-animation 4s ease infinite;
   /* margin-bottom: 10px; */
@@ -109,7 +117,7 @@
 .donate-button-small {
   margin-top: 15px;
   width: 100%;
-  color: inherit;
+  color: var(--text-light);
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
 }
 
@@ -262,10 +270,11 @@
 .crystal-tag {
   height: auto;
   width: 100%;
-  background-color: #8D818C;
+  background-color: var(--background-secondary);
   text-align: left;
   border-radius: 23px;
   margin-bottom: 23px;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
 }
 
 .crystal-tag .top-tag {
@@ -303,8 +312,27 @@
   margin-top: auto;
   margin-bottom: auto;
   width: 60%;
-  height: auto;
+  height: 42px;
+}
+
+.crystal-tag  .top-right-block {
+  height: 100%;
+  width: 100%;
+  opacity: 40%;
   border-radius: 20px;
+}
+
+.crystal-tag .top-right-text {
+  font-size: 22px;
+  text-align: center;
+  vertical-align: middle;
+  height: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  position: relative;
+  top: -42px;
+  /* text-shadow: -1px -1px 0 rgb(167, 167, 167), 1px -1px 0 rgb(167, 167, 167), -1px 1px 0 rgb(167, 167, 167), 1px 1px 0 rgb(167, 167, 167); */
+
 }
 
 .crystal-tag .name {
@@ -322,17 +350,6 @@
 .crystal-tag .message {
   font-size: 16px;
   height: auto;
-}
-
-.crystal-tag .top-right-text {
-  font-size: 22px;
-  text-align: center;
-  vertical-align: middle;
-  height: auto;
-  margin-top: auto;
-  margin-bottom: auto;
-  /* text-shadow: -1px -1px 0 rgb(167, 167, 167), 1px -1px 0 rgb(167, 167, 167), -1px 1px 0 rgb(167, 167, 167), 1px 1px 0 rgb(167, 167, 167); */
-
 }
 
 .crystal-tag .bold {
@@ -416,4 +433,9 @@ canvas {
   border-radius: 12px;
   margin-top: 50px;
   margin-bottom: 50px;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.opaque {
+  opacity: 100%;
 }

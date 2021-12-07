@@ -185,7 +185,7 @@ const CrystalMap = (props) => {
     }
 
     p5.colorMode(p5.HSB, 360, 100, 100);
-    p5.background(HEXtoHSB('#8D818C'));
+    p5.background(HEXtoHSB('#5E5E5E'));
     p5.normalMaterial();
     crystalList.forEach(crystal => crystal.drawTris(p5));
   }

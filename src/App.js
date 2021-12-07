@@ -325,8 +325,9 @@ function App() {
                   <p className="name"> {item.name} </p>
                   <p className="ownerid"> { item.owner.toString() } </p>
                 </div>
-                <div className="top-right" style={{"backgroundColor": item.color}}>
-                  <p className="top-right-text"><span className="bold">${ item.ammount.toNumber() }</span> on { toDate(item.timestamp) }</p>
+                <div className="top-right">
+                  <div className="top-right-block" style={{"backgroundColor": item.color}}></div>
+                  <p className="top-right-text"><span className="bold opaque">${ item.ammount.toNumber() }</span> on { toDate(item.timestamp) }</p>
                 </div>
               </div>
               <div className="bottom-tag">
@@ -420,8 +421,12 @@ function App() {
             onClick={ e => {
               setDonating(!donating)
             }}
-          ><p style={{'marginBottom': '0px'}}>DONATE NOW</p>
-          <p className="donation-counter">${ donationTotal } raised</p></button>
+          >
+            <div>
+              <p style={{'marginBottom': '0px'}}>DONATE NOW</p>
+              <p className="donation-counter">${ donationTotal } raised</p>
+            </div>
+          </button>
           { renderConnectedContainer() }
           {/* {walletAddress && renderConnectedContainer()} */}
           {/* {!walletAddress && renderNotConnectedContainer()} */}
