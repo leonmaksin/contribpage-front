@@ -1,7 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # secret keypair
-src/keypair.json
+/src/keypair.json
 
 # dependencies
 /node_modules
