@@ -84,6 +84,10 @@
             "type": "u64"
           },
           {
+            "name": "donationTotal",
+            "type": "u64"
+          },
+          {
             "name": "itemList",
             "type": {
               "vec": {

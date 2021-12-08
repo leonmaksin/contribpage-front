@@ -14,6 +14,8 @@ const HEXtoHSB = (hex) => {
   const n = v - Math.min(r, g, b);
   const h = n === 0 ? 0 : n && v === r ? (g - b) / n : v === g ? 2 + (b - r) / n : 4 + (r - g) / n;
   let HSB = [60 * (h < 0 ? h + 6 : h), v && (n / v) * 100, v * 100];
+  HSB[1] = Math.min(HSB[1],80);
+  HSB[1] = Math.max(HSB[1],20);
   return HSB;
 };
 
@@ -160,6 +162,7 @@ const CrystalMap = (props) => {
   const crystalListProps = props.itemListProp;
   const psizex = document.documentElement.clientWidth*0.8;
   const psizey = 600;
+  const widthFactor = psizex/1152;
 
   const setup = (p5, canvasParentRef) => {
     p5.createCanvas(psizex, psizey, p5.WEBGL).parent(canvasParentRef);
@@ -170,8 +173,8 @@ const CrystalMap = (props) => {
 
     crystalListProps.map((item) => {
       const size = item.size.toNumber();
-      if (size > 50) return;
-      const coordx = item.coordx.toNumber()-psizex/2;
+      // if (size > 100) return;
+      const coordx = (item.coordx.toNumber()-psizex/2)*widthFactor;
       const coordy = item.coordy.toNumber()-psizey/2;
       const color = item.color;
       let newCrystal = new noiseCrystal(p5,coordx,coordy,0,size,color);

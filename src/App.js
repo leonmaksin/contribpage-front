@@ -9,7 +9,6 @@ import {
 import idl from './idl.json';
 import kp from './keypair.json';
 import Crystals from './sketches/crystals';
-import p5 from 'p5';
 
 // import { Buffer } from 'buffer'
 // globalThis.Buffer = Buffer
@@ -42,12 +41,38 @@ function App() {
   const [itemName, setItemName] = useState('');
   const [itemMessage, setItemMessage] = useState('');
   const [itemColor, setItemColor] = useState('#FFB4A2');
-  const [itemSize, setItemSize] = useState(null);
-  const [itemCoordX, setItemCoordX] = useState(null);
-  const [itemCoordY, setItemCoordY] = useState(null);
+  // const [itemSize, setItemSize] = useState(null);
+  // const [itemCoordX, setItemCoordX] = useState(null);
+  // const [itemCoordY, setItemCoordY] = useState(null);
 
   const progressAlert = () => {
     alert('I love your enthusiasm, but this portion is still being built 🛠\nCheck back soon and I\'ll have it done 🤠');
+  }
+
+  const debug = true;
+  const debugContainer = () => {
+    if (itemList === null) {
+      return (
+        <div className="connected-container">
+          { !walletAddress && renderWalletConnect() }
+          <button className="cta-button submit-gif-button" onClick={createBaseAccount} style={{'marginTop': '50px'}}>
+            Do One-Time Initialization For Item Program Account
+          </button>
+        </div>
+      )
+    }
+    else {
+      return (
+        <button
+          className="cta-button submit-gif-button vote-button"
+          onClick={e => {
+            console.log(itemList);
+          }}
+        >
+          Check lists
+        </button>
+      )
+    }
   }
 
   const payWithSolana = () => {
@@ -113,6 +138,11 @@ function App() {
     }
   }
 
+  function calcSize(x) {
+    const exponent = Math.pow(x,0.8)/80;
+    return 80 - (80/(Math.pow(Math.E,exponent)))
+  }
+
   const sendItem = async () => {
     // checkIfWalletIsConnected();
     if (!walletAddress) return;
@@ -121,7 +151,12 @@ function App() {
       const provider = getProvider();
       const program = new Program(idl, programID, provider);
 
-      await program.rpc.addItem(itemName, new BN(donationAmmount), itemMessage, new BN(itemSize),
+      const donationAmmountFloat = parseFloat(donationAmmount);
+      const itemSize = calcSize(donationAmmountFloat);
+      const itemCoordX = 10+document.documentElement.clientWidth*0.8*Math.random();
+      const itemCoordY = 10+580*Math.random();
+
+      await program.rpc.addItem(itemName, new BN(donationAmmountFloat), itemMessage, new BN(itemSize),
       itemColor, new BN(itemCoordX), new BN(itemCoordY), new BN(new Date().getTime()),
       {
         accounts: {
@@ -132,13 +167,6 @@ function App() {
       
       console.log("Item successfully sent to program", itemMessage)
       await getItemList();
-      // const item = {
-      //   coordx: itemCoordX,
-      //   coordy: itemCoordY,
-      //   color: itemColor,
-      //   size: itemSize,
-      // }
-      // addCrystal(p5,item);
       window.location.reload();
     } catch (error) {
       console.log("Error sending item:", error)
@@ -147,7 +175,7 @@ function App() {
 
   const renderWalletConnect = () => (
     <button
-      className="cta-button connect-wallet-button"
+      className="cta-button"
       onClick={ connectSolanaWallet }
     >
       Connect to Wallet
@@ -158,37 +186,26 @@ function App() {
     return (
       <div>
         <div className="donate-container">
-          {/* <input
-            type="number"
-            placeholder="Enter your message!"
-            className="money-input"
-            value={donationAmmount}
-            onChange={(event) => {
-              const { value } = event.target;
-              setDonationAmmount(value);
-            }}
-          />
-          <span class="focus-border"></span> */}
-          <div class="input-row">
+          <div className="input-row">
             <input type="radio" name="select" id="option-1"/>
             <input type="radio" name="select" id="option-2"/>
             <input type="radio" name="select" id="option-3"/>
             <input type="radio" name="select" id="option-4"/>
-            <label for="option-1" class="option option-1" onClick={(e) => {setDonationAmmount(5.00.toFixed(2))}}>
+            <label for="option-1" className="option option-1" onClick={(e) => {setDonationAmmount(5.00.toFixed(2))}}>
               <span>$ 5</span>
             </label>
-            <label for="option-2" class="option option-2" onClick={(e) => {setDonationAmmount(10.00.toFixed(2))}}>
+            <label for="option-2" className="option option-2" onClick={(e) => {setDonationAmmount(10.00.toFixed(2))}}>
               <span>$ 10</span>
             </label>
-            <label for="option-3" class="option option-3" onClick={(e) => {setDonationAmmount(25.00.toFixed(2))}}>
+            <label for="option-3" className="option option-3" onClick={(e) => {setDonationAmmount(25.00.toFixed(2))}}>
               <span>$ 25</span>
             </label>
-            <label for="option-4" class="option option-4" onClick={(e) => {setDonationAmmount(50.00.toFixed(2))}}>
+            <label for="option-4" className="option option-4" onClick={(e) => {setDonationAmmount(50.00.toFixed(2))}}>
               <span>$ 50</span>
             </label>
             <div className="option-money">
               <span className="dollar-icon">$</span>
-              <input class="money-input" placeholder="xx.xx" type="number" step='0.01' onFocus={(e) => {
+              <input className="money-input" placeholder="xx.xx" type="number" step='0.01' onFocus={(e) => {
                 document.getElementById("option-1").checked = false;
                 document.getElementById("option-2").checked = false;
                 document.getElementById("option-3").checked = false;
@@ -201,7 +218,7 @@ function App() {
                 else setDonationAmmount(parseFloat(parseFloat(value).toFixed(2)));
               }}
               ></input>
-              <span class="money-underline"></span>
+              <span className="money-underline"></span>
             </div>
           </div>
           <button
@@ -236,6 +253,8 @@ function App() {
         onSubmit={(event) => {
           event.preventDefault();
           sendItem();
+          setDonated(false);
+          setDonating(false);
         }}
         className="crystal-form"
         style={{"borderColor": itemColor}}
@@ -299,70 +318,6 @@ function App() {
         <div className="input-row">
           <button type="submit" className="cta-button submit-form-button">Generate your crystal</button>
         </div>
-
-        {/* <div className="col">
-          <div className="row justify-content-center">
-            <input
-              type="color"
-              placeholder="Crystal color"
-              className="smaller-input color-input"
-              value={itemColor}
-              onChange={(event) => {
-                const { value } = event.target;
-                setItemColor(value);
-              }}
-            />
-            
-            <input
-              type="number"
-              min="1"
-              placeholder="Crystal size"
-              className="smaller-input"
-              value={itemSize}
-              onChange={(event) => {
-                const { value } = event.target;
-                setItemSize(value);
-              }}
-            />
-            
-            <input
-              type="number"
-              placeholder="Crystal x-coordinate"
-              className="smaller-input"
-              value={itemCoordX}
-              onChange={(event) => {
-                const { value } = event.target;
-                setItemCoordX(value);
-              }}
-            />
-            
-            <input
-              type="number"
-              placeholder="Crystal y-coordinate"
-              className="smaller-input"
-              value={itemCoordY}
-              onChange={(event) => {
-                const { value } = event.target;
-                setItemCoordY(value);
-              }}
-            />
-            
-          </div>
-        
-          <div className="submit-row-box">
-            <input
-              type="text"
-              placeholder="Enter your message!"
-              className="message-input"
-              value={itemMessage}
-              onChange={(event) => {
-                const { value } = event.target;
-                setItemMessage(value);
-              }}
-            />
-            <button type="submit" className="cta-button submit-form-button">Submit</button>
-          </div>
-        </div> */}
       </form>
     )
   }
@@ -372,10 +327,6 @@ function App() {
       return (
         <div className="connected-container">
           <p className="header margin-top-loading">Loading...</p>
-          {/* { !walletAddress && renderWalletConnect() }
-          <button className="cta-button submit-gif-button" onClick={createBaseAccount} style={{'marginTop': '50px'}}>
-            Do One-Time Initialization For Item Program Account
-          </button> */}
         </div>
       )
     }
@@ -424,7 +375,6 @@ function App() {
               <div className="bottom-tag">
                 <p className="message"> {item.message} </p>
               </div>
-              {/* <h1>{item.message}</h1> */}
             </div>
           );
         })}
@@ -440,14 +390,6 @@ function App() {
         <div className="item-grid">
           { renderItemFields() }
         </div>
-        {/* <button
-          className="cta-button submit-gif-button vote-button"
-          onClick={e => {
-            console.log(itemList);
-          }}
-        >
-          Check lists
-        </button> */}
       </div>
     )
   };
@@ -469,7 +411,8 @@ function App() {
       const account = await program.account.baseAccount.fetch(baseAccount.publicKey);
       
       console.log("Got the account", account)
-      setItemList(account.itemList)
+      setItemList(account.itemList);
+      setDonationTotal(account.donationTotal.toNumber());
 
     } catch (error) {
       console.log("Error in getItemList: ", error)
@@ -497,6 +440,7 @@ function App() {
             Thanks for checking out This project is currently a work in progress, feel free to <br></br>
             generate a crystal with your solana wallet for now 🚀
           </p> */}
+          { debug && debugContainer() }
           <p className="header">
             Crystal Campaigns ✨
             {/* Contributions Page */}

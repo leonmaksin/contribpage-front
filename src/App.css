@@ -67,12 +67,6 @@
   font-weight: 600;
 }
 
-.connect-wallet-button {
-  background: -webkit-linear-gradient(left, #60c657, #35aee2);
-  background-size: 200% 200%;
-  animation: gradient-animation 4s ease infinite;
-}
-
 .donate-box {
   height: auto;
   margin: 5px;
@@ -477,6 +471,7 @@ input[type="radio"]{
 .crystal-tag .message {
   font-size: 16px;
   height: auto;
+  overflow-wrap: break-word;
 }
 
 .crystal-tag .bold {
