@@ -179,6 +179,7 @@ const CrystalMap = (props) => {
       const color = item.color;
       let newCrystal = new noiseCrystal(p5,coordx,coordy,0,size,color);
       crystalList.push(newCrystal);
+      return null;
     });
 
     for (let i=0; i<3; ++i) {

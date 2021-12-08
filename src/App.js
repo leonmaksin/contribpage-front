@@ -15,7 +15,8 @@ import Crystals from './sketches/crystals';
 
 const BN = require('bn.js');
 
-const { SystemProgram, Keypair } = web3;
+const { SystemProgram } = web3;
+// const { SystemProgram, Keypair } = web3;
 
 const arr = Object.values(kp._keypair.secretKey);
 const secret = new Uint8Array(arr);
@@ -225,21 +226,21 @@ function App() {
             className="cta-button pay-solana-button donate-button-small"
             onClick={ payWithSolana }
           >
-            <img src="./images/solana.svg" className="button-img"></img>
+            <img src="./images/solana.svg" alt="solana logo" className="button-img"></img>
             Pay with Solana | { 99.99 }% goes to charity
           </button>
           <button
             className="cta-button pay-etherium-button donate-button-small"
             onClick={ payWithEtherium }
           >
-            <img src="./images/etherium.png" className="button-img" style={{'marginRight': '4px'}}></img>
+            <img src="./images/etherium.png" alt="etherium logo" className="button-img" style={{'marginRight': '4px'}}></img>
             Pay with Etherium | { 99 }% goes to charity
           </button>
           <button
             className="cta-button pay-card-button donate-button-small"
             onClick={ payWithCard }
           >
-            <img src="./images/card.png" className="button-img" style={{'marginRight': '10px'}}></img>
+            <img src="./images/card.png" alt="card logo" className="button-img" style={{'marginRight': '10px'}}></img>
             Pay with card | { 97 }% goes to charity
           </button>
         </div>
@@ -349,10 +350,10 @@ function App() {
   const toDate = (timestamp) => {
     var date = new Date(timestamp.toNumber());
     var hours = date.getHours()%12;
-    if (hours == 0) hours = 12;
+    if (hours === 0) hours = 12;
     var minutes = date.getMinutes().toString();
     var ampm = date.getHours() < 12 ? 'am' : 'pm';
-    if (minutes.length == 1) minutes = '0' + minutes;
+    if (minutes.length === 1) minutes = '0' + minutes;
     return  months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear() + ', at ' + hours + ':' + minutes + ' ' + ampm;
   }
 
@@ -401,7 +402,7 @@ function App() {
     };
     window.addEventListener('load', onLoad);
     return () => window.removeEventListener('load', onLoad);
-  }, []);
+  },);
 
   const getItemList = async() => {
     console.log("Fetching item list...")
@@ -419,17 +420,6 @@ function App() {
       setItemList(null);
     }
   }
-
-  {/* useEffect(() => {
-    if (walletAddress) {
-      console.log('Fetching item list...');
-      
-      // CALL SOLANA PROGRAM
-      getItemList()
-
-      // setItemList(TEST_ITEMS);
-    }
-  }, [walletAddress]); */}
 
   return (
     <div className="App">
