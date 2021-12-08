@@ -437,14 +437,14 @@ input[type="radio"]{
   height: 42px;
 }
 
-.crystal-tag .top-right-block {
+.crystal-tag .tr-block {
   height: 100%;
   width: 100%;
   opacity: 40%;
   border-radius: 20px;
 }
 
-.crystal-tag .top-right-text {
+.crystal-tag .tr-text {
   font-size: 22px;
   text-align: center;
   vertical-align: middle;
@@ -547,10 +547,6 @@ canvas {
   margin-top: 50px;
   margin-bottom: 50px;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
-}
-
-.opaque {
-  opacity: 100%;
 }
 
 .margin-top-loading {

@@ -369,8 +369,8 @@ function App() {
                   <p className="ownerid"> { item.owner.toString() } </p>
                 </div>
                 <div className="top-right">
-                  <div className="top-right-block" style={{"backgroundColor": item.color}}></div>
-                  <p className="top-right-text"><span className="bold opaque">${ item.ammount.toNumber() }</span> on { toDate(item.timestamp) }</p>
+                  <div className="tr-block" style={{"backgroundColor": item.color}}></div>
+                  <p className="tr-text"><span className="bold">${ item.ammount.toNumber() }</span> on { toDate(item.timestamp) }</p>
                 </div>
               </div>
               <div className="bottom-tag">
