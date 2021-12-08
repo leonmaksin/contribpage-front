@@ -49,7 +49,7 @@ function App() {
     alert('I love your enthusiasm, but this portion is still being built 🛠\nCheck back soon and I\'ll have it done 🤠');
   }
 
-  const debug = true;
+  const debug = false;
   const debugContainer = () => {
     if (itemList === null) {
       return (
@@ -326,7 +326,7 @@ function App() {
     if (itemList === null) {
       return (
         <div className="connected-container">
-          <p className="header margin-top-loading">Loading...</p>
+          <p className="header margin-top-loading">Calling Solana blockchain...</p>
         </div>
       )
     }
@@ -442,8 +442,7 @@ function App() {
           </p> */}
           { debug && debugContainer() }
           <p className="header">
-            Crystal Campaigns ✨
-            {/* Contributions Page */}
+            AngelBoard 😇
           </p>
           <p className="sub-text">
             Donate for a cause and earn your spot on the Solana blockchain ⚡️💸
