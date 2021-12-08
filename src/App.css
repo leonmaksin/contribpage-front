@@ -7,6 +7,9 @@
   --text-light: #f4f3ee;
   --text-gradient-1: #E5989B;
   --text-gradient-2: #FFB4A2;
+  --font-regular: 25px;
+  --font-form-regular: 20px;
+  --font-form-small: 12px;
 }
 
 .App {
@@ -40,16 +43,8 @@
   font-weight: 600;
 }
 
-.donation-counter {
-  margin: 0;
-  font-size: 25px;
-  font-weight: 600;
-  position: relative;
-  top: -25px;
-}
-
 .sub-text {
-  font-size: 25px;
+  font-size: var(--font-regular);
   margin-bottom: 0px;
 }
 
@@ -78,15 +73,13 @@
   animation: gradient-animation 4s ease infinite;
 }
 
-.submit-gif-button {
-  background: -webkit-linear-gradient(left, #4e44ce, #35aee2);
-  background-size: 200% 200%;
-  animation: gradient-animation 4s ease infinite;
-  margin-left: 10px;
+.donate-box {
+  height: auto;
+  margin: 5px;
 }
 
 .donate-button {
-  height: 135px;
+  height: auto;
   border: 0;
   width: auto;
   padding-left: 5vw;
@@ -104,6 +97,20 @@
   animation: gradient-animation 4s ease infinite;
   /* margin-bottom: 10px; */
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.donate-now {
+  margin-bottom: 0px;
+  line-height: 70px;
+  padding-top: 18px;
+}
+
+.donation-counter {
+  margin: 0;
+  font-size: var(--font-regular);
+  font-weight: 600;
+  position: relative;
+  top: -5px;
 }
 
 .donate-button-small {
@@ -199,55 +206,184 @@
 }
 
 .crystal-form {
+  margin: auto;
   margin-top: 30px;
-}
-
-.crystal-form input[type="text"] {
-  display: inline-block;
   padding: 10px;
-  height: 60px;
-  font-size: 16px;
-  box-sizing: border-box;
-  background-color: rgba(0, 0, 0, 0.25);
-  border: none;
+  width: 60vw;
+  background-color: var(--background-secondary);
   border-radius: 10px;
-  margin: 10px auto;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+  border-style: solid;
+  /* border-width: 10px; */
 }
 
-.crystal-form input[type="number"] {
+.crystal-form .input-row {
+  display: flex;
+  margin: 10px 15px;
+}
+
+.crystal-form .input-label {
+  text-align: left;
+  width: 35%;
+}
+
+.crystal-form .input-input {
+  width: 65%;
+}
+
+.crystal-form .input-input input {
+  font-size: var(--font-form-regular);
+}
+
+.crystal-form .input-input textarea {
+  font-size: var(--font-form-small);
+}
+
+.crystal-form .input-input input[type="text"], textarea {
   display: inline-block;
+  width: 100%;
   padding: 10px;
-  height: 60px;
-  font-size: 16px;
   box-sizing: border-box;
-  background-color: rgba(0, 0, 0, 0.25);
+  background-color: rgba(255, 255, 255, 0.75);
   border: none;
-  border-radius: 10px;
-  margin: 10px auto;
+  border-radius: 6px;
+  vertical-align: center;
+  margin-top: 4px;
 }
 
-.crystal-form input[type="color"] {
+.crystal-form .input-input input[type="color"] {
+  width: 100%;
+  height: 100%;
   display: inline-block;
-  padding: 0px;
-  height: 60px;
-  font-size: 16px;
   box-sizing: border-box;
-  background-color: rgba(0, 0, 0, 0.25);
   border: none;
-  border-radius: 10px;
-  margin: 10px auto;
-  width: 20%;
+  opacity: 0%;
+  position: relative;
+  z-index: 100;
+}
+
+.submit-row-box {
+  height: 100%;
+  width: 100%;
+  border-radius: 6px;
+  position: relative;
+  top: -76px;
+}
+
+.input-row-color {
+  height: 70px;
+}
+
+.crystal-form .input-label .input-main-text {
+  font-size: var(--font-form-regular);
+  margin-bottom: 2px;
+}
+
+.crystal-form .input-label .input-small-text {
+  font-size: var(--font-form-small);
+}
+
+.submit-form-button {
+  background: -webkit-linear-gradient(left, var(--text-gradient-1), var(--text-gradient-2));
+  background-size: 200% 200%;
+  animation: gradient-animation 4s ease infinite;
+  width: 80%;
+  margin: 12px auto 0px auto;
+  color: var(--text-dark);
 }
 
 .money-input {
   background-color: transparent;
-  /* border: none; */
-  border-bottom: 1px solid #CCC; /* customizable */
-  /* color: #555; */
+  border: none;
+  border-bottom: 1px solid #CCC;
+  color: var(--text-dark);
   box-sizing: border-box;
-  padding: 1px 6px;
-  margin-top: 10px;
-  height: 40px;
+  font-size: 18px;
+  height: 50px;
+  padding: 10px 0px;
+  width: 80%;
+  text-align: left;
+}
+
+.donate-container .input-row {
+  width: 100%;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  display: flex;
+}
+
+.dollar-icon {
+  color: #AAA;
+  padding-right: 4px;
+}
+
+.money-input input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.money-input:focus {
+  outline: none;
+}
+
+.money-input::-webkit-input-placeholder {
+  color: #AAA;
+}
+
+.money-input:focus::-webkit-input-placeholder {
+  /* color: var(--text-dark); */
+}
+
+.money-underline {
+  background-color: var(--text-dark);
+  display: inline-block;
+  height: 3px;
+  margin-top: -4px;
+  position: relative;
+  top: -17px;
+  -webkit-transform: scale(0, 1);
+  transform: scale(0, 1);
+  -webkit-transition: all 0.5s linear;
+  transition: all 0.2s linear;
+  width: 100%;
+}
+
+.money-input:focus+.money-underline {
+  transform: scale(1);
+}
+
+.money-input:focus+.dollar-icon {
+  color: var(--text-dark);
+}
+
+.option{
+  background: var(--text-light);
+  height: 50px;
+  flex: 1 1 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 0 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 0 10px;
+  /* border: 2px solid lightgrey; */
+  border: none;
+  transition: all 0.3s ease;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+}
+.option-money{
+  height: 50px;
+  width: 20%;
+}
+input[type="radio"]{
+  display: none;
+}
+#option-1:checked:checked ~ .option-1,
+#option-2:checked:checked ~ .option-2,
+#option-3:checked:checked ~ .option-3,
+#option-4:checked:checked ~ .option-4{
+  border: none;
+  background: -webkit-linear-gradient(left, var(--text-gradient-1), var(--text-gradient-2));
 }
 
 .donation-grid {
@@ -278,7 +414,6 @@
   margin-right: 25px;
   display: flex;
   flex-direction: row;
-  
   /* background-color: green; */
 }
 
@@ -325,7 +460,6 @@
   position: relative;
   top: -42px;
   /* text-shadow: -1px -1px 0 rgb(167, 167, 167), 1px -1px 0 rgb(167, 167, 167), -1px 1px 0 rgb(167, 167, 167), 1px 1px 0 rgb(167, 167, 167); */
-
 }
 
 .crystal-tag .name {
@@ -369,23 +503,18 @@
   padding: 0 1rem;
 }
 
-.textarea {
+/* .textarea {
   display: block;
   width: 100%;
   overflow: hidden;
   resize: both;
   min-height: 40px;
   line-height: 20px;
-}
+} */
 
 .textarea[contenteditable]:empty::before {
   content: "Placeholder still possible";
   color: gray;
-}
-
-.message-input {
-  /* flex-grow: 1; */
-  width: 80%;
 }
 
 .smaller-input {
@@ -393,7 +522,8 @@
 }
 
 .connected-container button {
-  height: 50px;
+  height: auto;
+  padding: 9px;
 }
 
 .centered-image-text {
@@ -417,11 +547,6 @@
   margin-top: 20px;
 }
 
-.margin-sides-input {
-  margin-left: 20vw;
-  margin-right: 20vw;
-}
-
 canvas {
   border-radius: 12px;
   margin-top: 50px;
@@ -431,4 +556,8 @@ canvas {
 
 .opaque {
   opacity: 100%;
+}
+
+.margin-top-loading {
+  margin-top: 20px;
 }

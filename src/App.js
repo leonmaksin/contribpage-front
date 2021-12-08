@@ -41,7 +41,7 @@ function App() {
   //item variables
   const [itemName, setItemName] = useState('');
   const [itemMessage, setItemMessage] = useState('');
-  const [itemColor, setItemColor] = useState('#cb42f5');
+  const [itemColor, setItemColor] = useState('#FFB4A2');
   const [itemSize, setItemSize] = useState(null);
   const [itemCoordX, setItemCoordX] = useState(null);
   const [itemCoordY, setItemCoordY] = useState(null);
@@ -116,13 +116,6 @@ function App() {
   const sendItem = async () => {
     // checkIfWalletIsConnected();
     if (!walletAddress) return;
-
-    if (itemMessage.length == 0) {
-      console.log("No message attached!")
-      alert("Please submit a message ✍️");
-      return
-    }
-    console.log('Item message:', itemMessage);
     
     try {
       const provider = getProvider();
@@ -174,7 +167,43 @@ function App() {
               const { value } = event.target;
               setDonationAmmount(value);
             }}
-          /> */}
+          />
+          <span class="focus-border"></span> */}
+          <div class="input-row">
+            <input type="radio" name="select" id="option-1"/>
+            <input type="radio" name="select" id="option-2"/>
+            <input type="radio" name="select" id="option-3"/>
+            <input type="radio" name="select" id="option-4"/>
+            <label for="option-1" class="option option-1" onClick={(e) => {setDonationAmmount(5.00.toFixed(2))}}>
+              <span>$ 5</span>
+            </label>
+            <label for="option-2" class="option option-2" onClick={(e) => {setDonationAmmount(10.00.toFixed(2))}}>
+              <span>$ 10</span>
+            </label>
+            <label for="option-3" class="option option-3" onClick={(e) => {setDonationAmmount(25.00.toFixed(2))}}>
+              <span>$ 25</span>
+            </label>
+            <label for="option-4" class="option option-4" onClick={(e) => {setDonationAmmount(50.00.toFixed(2))}}>
+              <span>$ 50</span>
+            </label>
+            <div className="option-money">
+              <span className="dollar-icon">$</span>
+              <input class="money-input" placeholder="xx.xx" type="number" step='0.01' onFocus={(e) => {
+                document.getElementById("option-1").checked = false;
+                document.getElementById("option-2").checked = false;
+                document.getElementById("option-3").checked = false;
+                document.getElementById("option-4").checked = false;
+              }}
+              value={donationAmmount}
+              onChange={(event) => {
+                const { value } = event.target;
+                if (value == null) setDonationAmmount(null);
+                else setDonationAmmount(parseFloat(parseFloat(value).toFixed(2)));
+              }}
+              ></input>
+              <span class="money-underline"></span>
+            </div>
+          </div>
           <button
             className="cta-button pay-solana-button donate-button-small"
             onClick={ payWithSolana }
@@ -209,8 +238,69 @@ function App() {
           sendItem();
         }}
         className="crystal-form"
+        style={{"borderColor": itemColor}}
       >
-        <div className="col margin-sides-input">
+        <div className="input-row">
+          <div className="input-label">
+            <p className="input-main-text">Your Name</p>
+            <p className="input-small-text">Optional</p>
+          </div>
+          <div className="input-input">
+            <input
+              type="text"
+              placeholder="Enter your name!"
+              className="message-input"
+              value={itemName}
+              onChange={(event) => {
+                const { value } = event.target;
+                setItemName(value);
+              }}
+            />
+            </div>
+        </div>
+
+        <div className="input-row">
+          <div className="input-label">
+            <p className="input-main-text">Your Message</p>
+            <p className="input-small-text">Optional</p>
+          </div>
+          <div className="input-input">
+            <textarea
+              type="text"
+              placeholder="Enter your message!"
+              value={itemMessage}
+              onChange={(event) => {
+                const { value } = event.target;
+                setItemMessage(value);
+              }}
+            />
+            </div>
+        </div>
+
+        <div className="input-row input-row-color">
+          <div className="input-label">
+            <p className="input-main-text">Your Color</p>
+          </div>
+          <div className="input-input">
+            <input
+              type="color"
+              placeholder="Crystal color"
+              className="smaller-input color-input"
+              value={itemColor}
+              onChange={(event) => {
+                const { value } = event.target;
+                setItemColor(value);
+              }}
+            />
+            <div className="submit-row-box" style={{"backgroundColor": itemColor}}></div>
+          </div>
+        </div>
+
+        <div className="input-row">
+          <button type="submit" className="cta-button submit-form-button">Generate your crystal</button>
+        </div>
+
+        {/* <div className="col">
           <div className="row justify-content-center">
             <input
               type="color"
@@ -270,9 +360,9 @@ function App() {
                 setItemMessage(value);
               }}
             />
-            <button type="submit" className="cta-button submit-gif-button">Submit</button>
+            <button type="submit" className="cta-button submit-form-button">Submit</button>
           </div>
-        </div>
+        </div> */}
       </form>
     )
   }
@@ -281,10 +371,11 @@ function App() {
     if (itemList === null) {
       return (
         <div className="connected-container">
-          { !walletAddress && renderWalletConnect() }
+          <p className="header margin-top-loading">Loading...</p>
+          {/* { !walletAddress && renderWalletConnect() }
           <button className="cta-button submit-gif-button" onClick={createBaseAccount} style={{'marginTop': '50px'}}>
             Do One-Time Initialization For Item Program Account
-          </button>
+          </button> */}
         </div>
       )
     }
@@ -345,7 +436,7 @@ function App() {
     return (
       <div className="connected-container">
         { donating && renderPaymentForm() }
-        { donated && renderInputForm() }
+        { donating && donated && renderInputForm() }
         <div className="item-grid">
           { renderItemFields() }
         </div>
@@ -422,8 +513,8 @@ function App() {
               setDonating(!donating)
             }}
           >
-            <div>
-              <p style={{'marginBottom': '0px'}}>DONATE NOW</p>
+            <div className="donate-box">
+              <p className="donate-now">DONATE NOW</p>
               <p className="donation-counter">${ donationTotal } raised</p>
             </div>
           </button>
