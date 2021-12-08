@@ -16,6 +16,7 @@ const HEXtoHSB = (hex) => {
   let HSB = [60 * (h < 0 ? h + 6 : h), v && (n / v) * 100, v * 100];
   HSB[1] = Math.min(HSB[1],80);
   HSB[1] = Math.max(HSB[1],20);
+  HSB[2] = Math.max(HSB[2],20);
   return HSB;
 };
 
