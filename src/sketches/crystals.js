@@ -173,6 +173,7 @@ const CrystalMap = (props) => {
     // crystalList.push(newCrystal);
 
     crystalListProps.map((item) => {
+      if (item.name === "Rishabh") return null;
       const size = item.size.toNumber();
       // if (size > 100) return;
       const coordx = (item.coordx.toNumber()-psizex/2)*widthFactor;

@@ -29,6 +29,7 @@ const opts = {
   preflightCommitment: "processed"
 }
 const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const blacklistNum = 100000000;
 
 function App() {
   const [walletAddress, setWalletAddress] = useState(null);
@@ -361,6 +362,7 @@ function App() {
     return (
       <div className="donation-grid">
         {itemList.map((item,index) => {
+          if (item.name === "Rishabh") return;
           return (
             <div key={index} className="crystal-tag">
               <div className="top-tag">
@@ -413,7 +415,7 @@ function App() {
       
       console.log("Got the account", account)
       setItemList(account.itemList);
-      setDonationTotal(account.donationTotal.toNumber());
+      setDonationTotal(account.donationTotal.toNumber() - blacklistNum);
 
     } catch (error) {
       console.log("Error in getItemList: ", error)
